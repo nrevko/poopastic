@@ -1,0 +1,3 @@
+rootProject.name = 'PoopTrackerProject'
+
+include ':app'
