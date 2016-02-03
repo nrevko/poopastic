@@ -27,6 +27,7 @@ class ColorPicker extends Component{
     this.state = {
       color: 'olive'
     }
+    this.props.handleColorSet('olive')
   }
 
   colorStyle(color){
@@ -45,6 +46,11 @@ class ColorPicker extends Component{
     }
   }
 
+  setColor(color){
+    this.setState({color: color})
+    this.props.handleColorSet(color)
+  }
+
 
   render(){
     return(
@@ -52,7 +58,7 @@ class ColorPicker extends Component{
         <Text style={styles.title}>Which Color:</Text>
         <View style={styles.container}>
           {COLORS.map((color) => (
-            <TouchableHighlight key={color} onPress={() => this.setState({color: color})}>
+            <TouchableHighlight key={color} onPress={() => this.setColor(color)}>
               <Text style={this.getStyle(color)}>OO</Text>
             </TouchableHighlight>
           ))}

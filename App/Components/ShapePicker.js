@@ -17,6 +17,7 @@ class ShapePicker extends Component{
     this.state = {
       imageIndex: 2
     }
+    this.props.handleShapeSet(2)
   }
 
   getStyle(index){
@@ -27,6 +28,11 @@ class ShapePicker extends Component{
     }
   }
 
+  setShape(index){
+    this.setState({imageIndex: index})
+    this.props.handleShapeSet(index)
+  }
+
 
   render(){
     return(
@@ -34,7 +40,7 @@ class ShapePicker extends Component{
         <Text style={styles.title}>Which Shape:</Text>
         <View style={styles.container}>
           {IMAGES.map((imageSource, imageIndex) => (
-            <TouchableHighlight key={imageIndex} onPress={() => this.setState({imageIndex})}>
+            <TouchableHighlight key={imageIndex} onPress={() => this.setShape(imageIndex)}>
               <Image source={IMAGES[imageIndex]} style={this.getStyle(imageIndex)} />
             </TouchableHighlight>
           ))}

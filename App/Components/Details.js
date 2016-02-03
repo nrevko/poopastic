@@ -9,9 +9,13 @@ class Details extends Component{
   constructor(props){
     super(props)
     this._handleChangePage=this._handleChangePage.bind(this)
+    this._setColor=this._setColor.bind(this)
+    this._setShape=this._setShape.bind(this)
   }
 
   _handleChangePage(){
+    debugger
+
     this.props.navigator.push({
       title: "All Events",
       component: EventList,
@@ -19,11 +23,18 @@ class Details extends Component{
     })
   }
 
+  _setColor(color){
+    this.pColor = color
+  }
+  _setShape(index){
+    this.imageIndex = index
+  }
+
   render(){
     return(
       <View style={styles.container}>
-        <ColorPicker />
-        <ShapePicker />
+        <ColorPicker handleColorSet={this._setColor} />
+        <ShapePicker handleShapeSet={this._setShape} />
         <View style={styles.buttonContainer}>
           <TouchableHighlight style={styles.button} underlayColor='#99d9f4' onPress={this._handleChangePage}>
             <Text style={styles.buttonText}>Definitely Done</Text>
