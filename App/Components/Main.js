@@ -2,14 +2,16 @@ import React, { Component } from "react-native";
 const { View, Text, StyleSheet, TouchableHighlight, NavigatorIOS } = React
 
 import EventList from './EventList'
+import InProgress from './InProgress'
 
 class Main extends Component{
   constructor(props){
     super(props)
-    this._handleChangePage=this._handleChangePage.bind(this)
+    this._handleHappenedChangePage=this._handleHappenedChangePage.bind(this)
+    this._handleStartChangePage=this._handleStartChangePage.bind(this)
   }
 
-  _handleChangePage(){
+  _handleHappenedChangePage(){
     this.props.navigator.push({
       title: "All Events",
       component: EventList,
@@ -17,14 +19,25 @@ class Main extends Component{
     })
   }
 
+  _handleStartChangePage(){
+    this.props.navigator.push({
+      title: "In Progress",
+      component: InProgress,
+      barTintColor: "#F8F08F",
+      passProps: {
+        startTime: new Date()
+      }
+    })
+  }
+
   render(){
     return(
       <View style={styles.container}>
-        <TouchableHighlight style={styles.button} underlayColor='#99d9f4' onPress={this._handleChangePage}>
+        <TouchableHighlight style={styles.button} underlayColor='#99d9f4' onPress={this._handleHappenedChangePage}>
           <Text style={styles.buttonText}>It Happened</Text>
         </TouchableHighlight>
         <Text>  </Text>
-        <TouchableHighlight style={styles.button} underlayColor='#99d9f4'>
+        <TouchableHighlight style={styles.button} underlayColor='#99d9f4' onPress={this._handleStartChangePage}>
           <Text style={styles.buttonText}>Start</Text>
         </TouchableHighlight>
       </View>
