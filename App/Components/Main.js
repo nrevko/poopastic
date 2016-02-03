@@ -1,7 +1,7 @@
 import React, { Component } from "react-native";
 const { View, Text, StyleSheet, TouchableHighlight, NavigatorIOS } = React
 
-import EventList from './EventList'
+import Details from './Details'
 import InProgress from './InProgress'
 
 class Main extends Component{
@@ -13,8 +13,8 @@ class Main extends Component{
 
   _handleHappenedChangePage(){
     this.props.navigator.push({
-      title: "All Events",
-      component: EventList,
+      title: "Details",
+      component: Details,
       barTintColor: "#F8F08F"
     })
   }
