@@ -3,24 +3,6 @@ const { View, Text, StyleSheet, TouchableHighlight, ListView } = React
 
 import PEvent from './PEvent'
 
-var COLORS=[
-"darkslategray",
-"darkolivegreen",
-"olivedrab",
-"yellowgreen",
-"darkkhaki",
-"olive",
-"yellow",
-"gold",
-"goldenrod",
-"darkgoldenrod",
-"peru",
-"tan",
-"chocolate",
-"saddlebrown",
-"coral",
-"darkred"
-]
 
 var EXAMPLE_EVENT = [
  {pStart: new Date(), pEnd: new Date(), shape: 'banana', color: "darkslategray"},
