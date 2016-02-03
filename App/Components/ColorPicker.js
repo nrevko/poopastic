@@ -49,7 +49,7 @@ class ColorPicker extends Component{
   render(){
     return(
       <View>
-        <Text style={styles.title}>Select Your Color:</Text>
+        <Text style={styles.title}>Which Color:</Text>
         <View style={styles.container}>
           {COLORS.map((color) => (
             <TouchableHighlight key={color} onPress={() => this.setState({color: color})}>
