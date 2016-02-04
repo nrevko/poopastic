@@ -94,6 +94,15 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     justifyContent: 'center'
   },
+  title: {
+    marginTop: 5,
+    fontSize: 18,
+    fontWeight: "bold",
+    alignSelf: 'center',
+    marginRight: 30,
+    marginLeft: 30,
+    backgroundColor: "#F8F08F"
+  },
 });
 
 export default Main

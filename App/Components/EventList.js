@@ -19,7 +19,7 @@ class EventList extends Component{
 
   _handleChangePage(){
     this.props.navigator.push({
-      title: "PoopASTIC Event",
+      title: "PoopASTIC",
       component: Main,
       barTintColor: "#F8F08F"
     })
@@ -61,13 +61,13 @@ class EventList extends Component{
     return(
       <View style={styles.container}>
         <View style={styles.header}>
-          <TouchableHighlight style={styles.leftButton} underlayColor='#99d9f4' onPress={this._handleChangePage}>
-            <Text style={styles.buttonText}> {"<"}Home </Text>
+          <TouchableHighlight style={styles.button} underlayColor='#99d9f4' onPress={this._handleChangePage}>
+            <Text style={styles.buttonText}>{"<"}Home</Text>
           </TouchableHighlight>
           <Text style={styles.title}>Your Recent Activity</Text>
 
-          <TouchableHighlight style={styles.rightButton} underlayColor='#99d9f4' onPress={this._handleHelpChangePage}>
-            <Text style={styles.buttonText}> Help{">"} </Text>
+          <TouchableHighlight style={styles.button} underlayColor='#99d9f4' onPress={this._handleHelpChangePage}>
+            <Text style={styles.buttonText}>Help{">"}</Text>
           </TouchableHighlight>
         </View>
         <ListView
@@ -107,8 +107,8 @@ var styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
     alignSelf: 'flex-start',
-    marginRight: 40,
-    marginLeft: 40
+    marginRight: 30,
+    marginLeft: 30
   },
   buttonText: {
     fontSize: 16,
@@ -117,6 +117,7 @@ var styles = StyleSheet.create({
   },
   leftButton: {
     height: 26,
+    width:70,
     backgroundColor: '#48BBEC',
     borderColor: '#48BBEC',
     borderWidth: 1,
@@ -124,8 +125,9 @@ var styles = StyleSheet.create({
     alignSelf: 'stretch',
     justifyContent: 'center'
   },
-  rightButton: {
+  button: {
     height: 26,
+    width:70,
     backgroundColor: '#48BBEC',
     borderColor: '#48BBEC',
     borderWidth: 1,

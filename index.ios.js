@@ -24,7 +24,7 @@ class PoopTrackerProject extends Component {
         navigationBarHidden = {false}
         backButtonTitle = "Cancel"
         initialRoute={{
-          title:"PoopASTIC Event",
+          title:"PoopASTIC",
           component: Main,
           barTintColor: "#F8F08F"
         }} />
