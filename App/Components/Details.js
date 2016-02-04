@@ -4,11 +4,14 @@ const { View, Text, StyleSheet, TouchableHighlight, AsyncStorage } = React
 import ColorPicker from './ColorPicker'
 import ShapePicker from './ShapePicker'
 import EventList from './EventList'
+import Help from './Help'
 
 class Details extends Component{
   constructor(props){
     super(props)
     this._handleChangePage=this._handleChangePage.bind(this)
+    this._handleChangePage1=this._handleChangePage1.bind(this)
+    this._handleHelpChangePage=this._handleHelpChangePage.bind(this)
     this._setColor=this._setColor.bind(this)
     this._setShape=this._setShape.bind(this)
     this._pEnd = new Date()
@@ -27,7 +30,29 @@ class Details extends Component{
       title: "Activity Feed",
       component: EventList,
       barTintColor: "#F8F08F",
-      navigationBarHidden: true
+      leftButtonTitle: "< Home",
+      onLeftButtonPress: ()=> this._handleChangePage1(),
+      rightButtonTitle: "Help >",
+      onRightButtonPress: ()=> this._handleHelpChangePage()
+    })
+  }
+
+  _handleChangePage1(){
+    this.props.navigator.push({
+      title: "PoopASTIC",
+      component: Main,
+      leftButtonTitle: " ",
+      barTintColor: "#F8F08F"
+    })
+  }
+
+  _handleHelpChangePage(){
+    this.props.navigator.push({
+      title: "Help Page",
+      component: Help,
+      leftButtonTitle: "< Back",
+      onLeftButtonPress: () => this.props.navigator.pop(),
+      barTintColor: "#F8F08F"
     })
   }
 

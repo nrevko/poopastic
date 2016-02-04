@@ -1,5 +1,6 @@
 import React, { Component } from "react-native";
-const { View, Text, StyleSheet, TouchableHighlight, ListView, AsyncStorage } = React
+const { View, Text, StyleSheet, TouchableHighlight,TouchableOpacity, ListView, ScrollView,
+AsyncStorage } = React
 
 import PEvent from './PEvent'
 import Main from './Main'
@@ -13,25 +14,28 @@ class EventList extends Component{
         rowHasChanged: (row1, row2) => row1 !== row2,
       }),
     }
-    this._handleChangePage=this._handleChangePage.bind(this)
-    this._handleHelpChangePage=this._handleHelpChangePage.bind(this)
+    // this._handleChangePage=this._handleChangePage.bind(this)
+    // this._handleHelpChangePage=this._handleHelpChangePage.bind(this)
   }
 
-  _handleChangePage(){
-    this.props.navigator.push({
-      title: "PoopASTIC",
-      component: Main,
-      barTintColor: "#F8F08F"
-    })
-  }
+  // _handleChangePage(){
+  //   this.props.navigator.push({
+  //     title: "PoopASTIC",
+  //     component: Main,
+  //     leftButtonTitle: " ",
+  //     barTintColor: "#F8F08F"
+  //   })
+  // }
 
-  _handleHelpChangePage(){
-    this.props.navigator.push({
-      title: "Help Page",
-      component: Help,
-      barTintColor: "#F8F08F"
-    })
-  }
+  // _handleHelpChangePage(){
+  //   this.props.navigator.push({
+  //     title: "Help Page",
+  //     component: Help,
+  //     leftButtonTitle: "< Back",
+  //     onLeftButtonPress: () => this.props.navigator.pop(),
+  //     barTintColor: "#F8F08F"
+  //   })
+  // }
 
   componentDidMount(){
 
@@ -58,22 +62,21 @@ class EventList extends Component{
   }
 
   render(){
+    let _scrollView: ScrollView;
     return(
       <View style={styles.container}>
-        <View style={styles.header}>
-          <TouchableHighlight style={styles.button} underlayColor='#99d9f4' onPress={this._handleChangePage}>
-            <Text style={styles.buttonText}>{"<"}Home</Text>
-          </TouchableHighlight>
-          <Text style={styles.title}>Your Recent Activity</Text>
 
-          <TouchableHighlight style={styles.button} underlayColor='#99d9f4' onPress={this._handleHelpChangePage}>
-            <Text style={styles.buttonText}>Help{">"}</Text>
-          </TouchableHighlight>
-        </View>
-        <ListView
-          dataSource={this.state.dataSource}
-          renderRow={(rowData) => <PEvent pEvent={rowData} />}
-          style={styles.ListView} />
+        <ScrollView
+          ref={(scrollView) => { _scrollView = scrollView; }}
+          automaticallyAdjustContentInsets={false}
+          onScroll={() => { console.log('onScroll!'); }}
+          scrollEventThrottle={200}
+          style={styles.scrollView}>
+            <ListView
+              dataSource={this.state.dataSource}
+              renderRow={(rowData) => <PEvent pEvent={rowData} />}
+              style={styles.ListView} />
+        </ScrollView>
       </View>
     )
   }
@@ -108,7 +111,8 @@ var styles = StyleSheet.create({
     fontWeight: "bold",
     alignSelf: 'flex-start',
     marginRight: 30,
-    marginLeft: 30
+    marginLeft: 30,
+    marginBottom: 10
   },
   buttonText: {
     fontSize: 16,
@@ -126,6 +130,7 @@ var styles = StyleSheet.create({
     justifyContent: 'center'
   },
   button: {
+    marginTop: 5,
     height: 26,
     width:70,
     backgroundColor: '#48BBEC',
@@ -133,7 +138,8 @@ var styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 8,
     alignSelf: 'flex-end',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginBottom: 10
   },
 })
 

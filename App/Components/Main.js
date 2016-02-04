@@ -4,6 +4,7 @@ const { View, Text, Image, StyleSheet, TouchableHighlight, NavigatorIOS } = Reac
 import Details from './Details'
 import InProgress from './InProgress'
 import EventList from './EventList'
+import Help from './Help'
 
 class Main extends Component{
   constructor(props){
@@ -11,6 +12,9 @@ class Main extends Component{
     this._handleHappenedChangePage=this._handleHappenedChangePage.bind(this)
     this._handleStartChangePage=this._handleStartChangePage.bind(this)
     this._handleChangePage=this._handleChangePage.bind(this)
+    this._handleChangePage1=this._handleChangePage1.bind(this)
+    this._handleHelpChangePage=this._handleHelpChangePage.bind(this)
+
   }
 
   _handleHappenedChangePage(){
@@ -37,7 +41,29 @@ class Main extends Component{
       title: "Activity Feed",
       component: EventList,
       barTintColor: "#F8F08F",
-      navigationBarHidden: true
+      leftButtonTitle: "< Home",
+      onLeftButtonPress: ()=> this._handleChangePage1(),
+      rightButtonTitle: "Help >",
+      onRightButtonPress: ()=> this._handleHelpChangePage()
+    })
+  }
+
+  _handleChangePage1(){
+    this.props.navigator.push({
+      title: "PoopASTIC",
+      component: Main,
+      leftButtonTitle: " ",
+      barTintColor: "#F8F08F"
+    })
+  }
+
+  _handleHelpChangePage(){
+    this.props.navigator.push({
+      title: "Help Page",
+      component: Help,
+      leftButtonTitle: "< Back",
+      onLeftButtonPress: () => this.props.navigator.pop(),
+      barTintColor: "#F8F08F"
     })
   }
 
