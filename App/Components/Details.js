@@ -5,6 +5,7 @@ import ColorPicker from './ColorPicker'
 import ShapePicker from './ShapePicker'
 import EventList from './EventList'
 import Help from './Help'
+import Main from './Main'
 
 class Details extends Component{
   constructor(props){
