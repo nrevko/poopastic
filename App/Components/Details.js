@@ -24,7 +24,7 @@ class Details extends Component{
     AsyncStorage.setItem(key, value)
 
     this.props.navigator.push({
-      title: "All Events",
+      title: "Activity Feed",
       component: EventList,
       barTintColor: "#F8F08F",
       navigationBarHidden: true

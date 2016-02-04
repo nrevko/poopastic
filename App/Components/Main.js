@@ -3,12 +3,14 @@ const { View, Text, Image, StyleSheet, TouchableHighlight, NavigatorIOS } = Reac
 
 import Details from './Details'
 import InProgress from './InProgress'
+import EventList from './EventList'
 
 class Main extends Component{
   constructor(props){
     super(props)
     this._handleHappenedChangePage=this._handleHappenedChangePage.bind(this)
     this._handleStartChangePage=this._handleStartChangePage.bind(this)
+    this._handleChangePage=this._handleChangePage.bind(this)
   }
 
   _handleHappenedChangePage(){
@@ -30,6 +32,15 @@ class Main extends Component{
     })
   }
 
+  _handleChangePage(){
+    this.props.navigator.push({
+      title: "Activity Feed",
+      component: EventList,
+      barTintColor: "#F8F08F",
+      navigationBarHidden: true
+    })
+  }
+
   render(){
     return(
       <View style={styles.mainContainer}>
@@ -45,7 +56,11 @@ class Main extends Component{
             <Text style={styles.buttonText}>Start</Text>
           </TouchableHighlight>
         </View>
-
+        <View style={styles.container}>
+          <TouchableHighlight style={styles.button} underlayColor='#99d9f4' onPress={this._handleChangePage}>
+            <Text style={styles.buttonText}>View Your Activity</Text>
+          </TouchableHighlight>
+        </View>
       </View>
     )
   }

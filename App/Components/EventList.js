@@ -2,6 +2,8 @@ import React, { Component } from "react-native";
 const { View, Text, StyleSheet, TouchableHighlight, ListView, AsyncStorage } = React
 
 import PEvent from './PEvent'
+import Main from './Main'
+import Help from './Help'
 
 class EventList extends Component{
   constructor(props){
@@ -11,6 +13,24 @@ class EventList extends Component{
         rowHasChanged: (row1, row2) => row1 !== row2,
       }),
     }
+    this._handleChangePage=this._handleChangePage.bind(this)
+    this._handleHelpChangePage=this._handleHelpChangePage.bind(this)
+  }
+
+  _handleChangePage(){
+    this.props.navigator.push({
+      title: "PoopASTIC Event",
+      component: Main,
+      barTintColor: "#F8F08F"
+    })
+  }
+
+  _handleHelpChangePage(){
+    this.props.navigator.push({
+      title: "Help Page",
+      component: Help,
+      barTintColor: "#F8F08F"
+    })
   }
 
   componentDidMount(){
@@ -40,7 +60,16 @@ class EventList extends Component{
   render(){
     return(
       <View style={styles.container}>
-        <Text style={styles.title}>Events</Text>
+        <View style={styles.header}>
+          <TouchableHighlight style={styles.leftButton} underlayColor='#99d9f4' onPress={this._handleChangePage}>
+            <Text style={styles.buttonText}> {"<"}Home </Text>
+          </TouchableHighlight>
+          <Text style={styles.title}>Your Recent Activity</Text>
+
+          <TouchableHighlight style={styles.rightButton} underlayColor='#99d9f4' onPress={this._handleHelpChangePage}>
+            <Text style={styles.buttonText}> Help{">"} </Text>
+          </TouchableHighlight>
+        </View>
         <ListView
           dataSource={this.state.dataSource}
           renderRow={(rowData) => <PEvent pEvent={rowData} />}
@@ -55,8 +84,10 @@ var styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  header:{
+    flexDirection: 'row'
+  },
   listView: {
-    paddingTop: 10,
     backgroundColor: '#F5FCFF',
   },
   colorStop: {
@@ -72,12 +103,36 @@ var styles = StyleSheet.create({
     width: 100
   },
   title: {
-    marginTop: 15,
+    marginTop: 5,
     fontSize: 18,
     fontWeight: "bold",
-    justifyContent: "center",
     alignSelf: 'flex-start',
-  }
+    marginRight: 40,
+    marginLeft: 40
+  },
+  buttonText: {
+    fontSize: 16,
+    color: 'white',
+    alignSelf: 'center'
+  },
+  leftButton: {
+    height: 26,
+    backgroundColor: '#48BBEC',
+    borderColor: '#48BBEC',
+    borderWidth: 1,
+    borderRadius: 8,
+    alignSelf: 'stretch',
+    justifyContent: 'center'
+  },
+  rightButton: {
+    height: 26,
+    backgroundColor: '#48BBEC',
+    borderColor: '#48BBEC',
+    borderWidth: 1,
+    borderRadius: 8,
+    alignSelf: 'flex-end',
+    justifyContent: 'center'
+  },
 })
 
 export default EventList
