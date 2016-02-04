@@ -26,7 +26,8 @@ class Details extends Component{
     this.props.navigator.push({
       title: "All Events",
       component: EventList,
-      barTintColor: "#F8F08F"
+      barTintColor: "#F8F08F",
+      navigationBarHidden: true
     })
   }
 

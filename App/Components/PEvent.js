@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from "react-native";
 const { View, Text, StyleSheet } = React
 
+import { ShapeNames } from "../helpers/constants"
+
 class PEvent extends Component{
   constructor(props){
     super(props)
@@ -27,7 +29,7 @@ class PEvent extends Component{
 
   date(){
     let dateTime = this.props.pEvent.pStart
-    return(dateTime.toString().substring(0,3) + " " + dateTime.getHours()+ dateTime.toLocaleTimeString().substring(1,4))
+    return(dateTime.toString().substring(0,3) + " " + dateTime.getHours()+":"+dateTime.toLocaleTimeString().match(/:(.*):/)[1])
   }
 
   pStyle(){
@@ -45,7 +47,7 @@ class PEvent extends Component{
       <View style={this.todayStyle()}>
         <View style={styles.container}>
           <View style={styles.colorStop}>
-            <Text style={this.pStyle()}>{this.props.pEvent.shape}</Text>
+            <Text style={this.pStyle()}>{ShapeNames[this.props.pEvent.shape]}</Text>
           </View>
           <View style={styles.container}>
             <Text>{this.duration()} </Text>

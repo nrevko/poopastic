@@ -1,5 +1,5 @@
 import React, { Component } from "react-native";
-const { View, Text, StyleSheet, TouchableHighlight, NavigatorIOS } = React
+const { View, Text, Image, StyleSheet, TouchableHighlight, NavigatorIOS } = React
 
 import Details from './Details'
 import InProgress from './InProgress'
@@ -32,20 +32,29 @@ class Main extends Component{
 
   render(){
     return(
-      <View style={styles.container}>
-        <TouchableHighlight style={styles.button} underlayColor='#99d9f4' onPress={this._handleHappenedChangePage}>
-          <Text style={styles.buttonText}>It Happened</Text>
-        </TouchableHighlight>
-        <Text>  </Text>
-        <TouchableHighlight style={styles.button} underlayColor='#99d9f4' onPress={this._handleStartChangePage}>
-          <Text style={styles.buttonText}>Start</Text>
-        </TouchableHighlight>
+      <View style={styles.mainContainer}>
+        <View style={styles.container}>
+          <Image source={require('../images/foto-economist.jpg')} />
+        </View>
+        <View style={styles.container}>
+          <TouchableHighlight style={styles.button} underlayColor='#99d9f4' onPress={this._handleHappenedChangePage}>
+            <Text style={styles.buttonText}>It Happened</Text>
+          </TouchableHighlight>
+          <Text>  </Text>
+          <TouchableHighlight style={styles.button} underlayColor='#99d9f4' onPress={this._handleStartChangePage}>
+            <Text style={styles.buttonText}>Start</Text>
+          </TouchableHighlight>
+        </View>
+
       </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
+  mainContainer:{
+    flex:1
+  },
   container: {
     flex: 1,
     flexDirection: 'row', //make children of our main container to be layed out horizontally (instead of vertically)

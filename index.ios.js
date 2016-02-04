@@ -22,6 +22,7 @@ class PoopTrackerProject extends Component {
         itemWrapperStyle={styles.navWrap}
         style={styles.container}
         navigationBarHidden = {false}
+        backButtonTitle = "Cancel"
         initialRoute={{
           title:"PoopASTIC Event",
           component: Main,
