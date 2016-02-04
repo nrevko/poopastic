@@ -12,6 +12,43 @@ import React, {
   View
 } from 'react-native';
 
+import Main from './App/Components/Main'
+
+class PoopTrackerProject extends Component {
+
+  render() {
+    return (
+      <NavigatorIOS
+        itemWrapperStyle={styles.navWrap}
+        style={styles.container}
+        navigationBarHidden = {false}
+        initialRoute={{
+          title:"PoopASTIC Event",
+          component: Main,
+          barTintColor: "#F8F08F"
+        }} />
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  navWrap: {
+    flex: 1,
+    marginTop: 60,
+    backgroundColor: '#F5FCFF',
+  },
+  container: {
+    flex: 1,
+    backgroundColor: '#111111'
+  },
+
+});
+
+AppRegistry.registerComponent('PoopTrackerProject', () => PoopTrackerProject);
+
+module.exports = PoopTrackerProject;
+
+
 
 
 // var API_KEY = '7waqfqbprs7pajbz28mqf6vz';
@@ -156,40 +193,3 @@ import React, {
 //     justifyContent: 'center'
 //   },
 // });
-
-
-import Main from './App/Components/Main'
-
-class PoopTrackerProject extends Component {
-
-  render() {
-    return (
-      <NavigatorIOS
-        itemWrapperStyle={styles.navWrap}
-        style={styles.container}
-        navigationBarHidden = {false}
-        initialRoute={{
-          title:"PoopASTIC Event",
-          component: Main,
-          barTintColor: "#F8F08F"
-        }} />
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  navWrap: {
-    flex: 1,
-    marginTop: 60,
-    backgroundColor: '#F5FCFF',
-  },
-  container: {
-    flex: 1,
-    backgroundColor: '#111111'
-  },
-
-});
-
-AppRegistry.registerComponent('PoopTrackerProject', () => PoopTrackerProject);
-
-module.exports = PoopTrackerProject;

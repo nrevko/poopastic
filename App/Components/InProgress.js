@@ -14,7 +14,10 @@ class InProgress extends Component{
     this.props.navigator.push({
       title: "Details",
       component: Details,
-      barTintColor: "#F8F08F"
+      barTintColor: "#F8F08F",
+      passProps: {
+        startTime: this.props.startTime
+      }
     })
   }
 

@@ -1,5 +1,5 @@
 import React, { Component } from "react-native";
-const { View, Text, StyleSheet, TouchableHighlight, ListView } = React
+const { View, Text, StyleSheet, TouchableHighlight, ListView, AsyncStorage } = React
 
 import PEvent from './PEvent'
 
@@ -35,9 +35,27 @@ class EventList extends Component{
   }
 
   componentDidMount(){
-    this.setState({
-      dataSource: this.state.dataSource.cloneWithRows(EXAMPLE_EVENT)
-    })
+
+    AsyncStorage.getAllKeys().then((allKeys) => {
+      let sortedKeys = allKeys.map((stringKey)=>(parseInt(stringKey.match(/key_(.*)/)[1]))).sort().reverse().map((intKey)=>("key_"+intKey))
+      AsyncStorage.multiGet(sortedKeys).then((keyValuez) =>{
+        this.setState({
+          dataSource: this.state.dataSource.cloneWithRows(
+            keyValuez.map((keyValue) => {
+              let value = keyValue[1]
+              let result = value.match(/pStart=(.*)\|pEnd=(.*)\|shape=(.*)\|color=(.*)/)
+              let pStart = result[1]
+              let pEnd = result[2]
+              let pShape = result[3]
+              let pColor = result[4]
+
+
+              return({pStart: new Date(pStart), pEnd: new Date(pEnd), shape: pShape, color: pColor})
+            })
+          )
+        })
+      })
+    }).done()
   }
 
   render(){

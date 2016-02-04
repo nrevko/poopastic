@@ -1,5 +1,5 @@
 import React, { Component } from "react-native";
-const { View, Text, StyleSheet, TouchableHighlight } = React
+const { View, Text, StyleSheet, TouchableHighlight, AsyncStorage } = React
 
 import ColorPicker from './ColorPicker'
 import ShapePicker from './ShapePicker'
@@ -11,10 +11,17 @@ class Details extends Component{
     this._handleChangePage=this._handleChangePage.bind(this)
     this._setColor=this._setColor.bind(this)
     this._setShape=this._setShape.bind(this)
+    this._pEnd = new Date()
+    this._pStart = this.props.startTime
+    if(!this._pStart){
+      this._pStart = this._pEnd
+    }
   }
 
   _handleChangePage(){
-    debugger
+    let key = "key_"+this._pStart.getTime()
+    let value = "pStart="+this._pStart+"|pEnd="+this._pEnd+"|shape="+this.imageIndex+"|color="+this.pColor
+    AsyncStorage.setItem(key, value)
 
     this.props.navigator.push({
       title: "All Events",
